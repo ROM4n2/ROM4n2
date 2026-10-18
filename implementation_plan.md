@@ -162,11 +162,11 @@
 > Return: Physical Execution Receipt with repository URL and live confirmation."
 
 **Step Breakdown:**
-- [ ] **Step 1: HITL Gate: Present final `README.md` to user and request publication authorization**.
-- [ ] **Step 2: Initialize remote repository `ROM4n2/ROM4n2` via GitHub CLI (`gh`)**.
-- [ ] **Step 3: Push commits to remote `main` branch**.
-- [ ] **Step 4: Verify repository exists and is public via `gh repo view`**.
-- [ ] **Step 5: Physical Evidence Gate**: Capture raw terminal execution receipt with git push logs and HTTP 200 confirmation.
+- [x] **Step 1: HITL Gate: Present final `README.md` to user and request publication authorization**.
+- [x] **Step 2: Initialize remote repository `ROM4n2/ROM4n2` via GitHub CLI (`gh`)**.
+- [x] **Step 3: Push commits to remote `main` branch**.
+- [x] **Step 4: Verify repository exists and is public via `gh repo view`**.
+- [x] **Step 5: Physical Evidence Gate**: Capture raw terminal execution receipt with git push logs and HTTP 200 confirmation.
 
 ---
 
