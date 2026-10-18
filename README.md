@@ -4,10 +4,29 @@
 package identity
 
 type SystemsEngineer struct {
-    Handle     string   `json:"handle"`     // ROM4n2
-    Focus      []string `json:"focus"`      // ["Go 1.24+ Concurrency", "Agent Harness Architecture", "Systems (C/C++, Rust)"]
-    Runtime    []string `json:"runtime"`    // ["Linux/WSL2", "Docker", "Deterministic CI"]
-    Discipline string   `json:"discipline"` // "Zero-Hallucination | Strict TDD | Guard Clauses"
+	Handle     string   `json:"handle"`
+	Focus      []string `json:"focus"`
+	Runtime    []string `json:"runtime"`
+	Discipline []string `json:"discipline"`
+}
+
+var Me = SystemsEngineer{
+	Handle: "ROM4n2",
+	Focus: []string{
+		"Go 1.24+ Concurrency",
+		"Agent Harness Architecture",
+		"Systems Programming (C/C++, Rust)",
+	},
+	Runtime: []string{
+		"Linux / POSIX",
+		"Docker",
+		"Deterministic CI",
+	},
+	Discipline: []string{
+		"Zero-Hallucination (Receipts Over Claims)",
+		"Strict TDD & Adversarial Mutation Checks",
+		"Guard Clauses (Max Indentation: 2)",
+	},
 }
 ```
 
