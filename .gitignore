@@ -1,0 +1,7 @@
+.vault-exec-ledger.json
+__pycache__/
+*.pyc
+.cache/
+.DS_Store
+Thumbs.db
+tmp/
