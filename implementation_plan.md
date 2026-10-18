@@ -130,10 +130,10 @@
 > Return: Physical Execution Receipt with table row verification and link audit report."
 
 **Step Breakdown:**
-- [ ] **Step 1: Run automated table structure validator on `README.md`**.
-- [ ] **Step 2: Confirm every badge/image has descriptive text fallback**.
-- [ ] **Step 3: Physical Evidence Gate**: Log verification report with column and link counts.
-- [ ] **Step 4: Git atomic commit**: Clean tag or status commit if needed.
+- [x] **Step 1: Run automated table structure validator on `README.md`**.
+- [x] **Step 2: Confirm every badge/image has descriptive text fallback**.
+- [x] **Step 3: Physical Evidence Gate**: Log verification report with column and link counts.
+- [x] **Step 4: Git atomic commit**: Clean tag or status commit if needed.
 
 ---
 
