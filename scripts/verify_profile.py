@@ -13,6 +13,7 @@ import argparse
 import os
 import re
 import sys
+import time
 import urllib.error
 import urllib.request
 from pathlib import Path
@@ -155,22 +156,35 @@ def check_links(lines: list[tuple[int, str]], skip_network: bool = False) -> lis
             "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         ),
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Connection": "close",
     }
 
     for url in sorted(urls_to_check):
         line_num = url_to_first_line[url]
         req = urllib.request.Request(url, headers=headers)
-        try:
-            with urllib.request.urlopen(req, timeout=10) as resp:
-                code = resp.getcode()
-                if code not in (200, 301, 302, 307, 308):
-                    violations.append(f"Line {line_num}: Link '{url}' returned HTTP {code}")
-        except urllib.error.HTTPError as e:
-            violations.append(f"Line {line_num}: Link '{url}' returned HTTP error {e.code}")
-        except urllib.error.URLError as e:
-            violations.append(f"Line {line_num}: Link '{url}' connection failed: {e.reason}")
-        except Exception as e:
-            violations.append(f"Line {line_num}: Link '{url}' error: {e}")
+        success = False
+        last_error = None
+        for attempt in range(3):
+            try:
+                with urllib.request.urlopen(req, timeout=10) as resp:
+                    code = resp.getcode()
+                    if code not in (200, 301, 302, 307, 308):
+                        violations.append(f"Line {line_num}: Link '{url}' returned HTTP {code}")
+                    success = True
+                    break
+            except urllib.error.HTTPError as e:
+                violations.append(f"Line {line_num}: Link '{url}' returned HTTP error {e.code}")
+                success = True
+                break
+            except urllib.error.URLError as e:
+                last_error = f"Line {line_num}: Link '{url}' connection failed: {e.reason}"
+                time.sleep(0.5)
+            except Exception as e:
+                last_error = f"Line {line_num}: Link '{url}' error: {e}"
+                time.sleep(0.5)
+
+        if not success and last_error:
+            violations.append(last_error)
 
     return violations
 

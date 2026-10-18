@@ -97,12 +97,12 @@
 > Return: Summary with MANDATORY Physical Execution Receipt (exit code + stdout snippet)."
 
 **Step Breakdown:**
-- [ ] **Step 1: Verify missing/empty file fails harness (RED)**.
-- [ ] **Step 2: Author `README.md` according to spec sections 1 through 5 (GREEN)**.
-- [ ] **Step 3: Execute `python scripts/verify_profile.py README.md` and verify all link checks return HTTP 200**.
-- [ ] **Step 4: Check for zero emojis and zero raw HTML tags**.
-- [ ] **Step 5: Physical Evidence Gate**: Capture raw terminal execution receipt.
-- [ ] **Step 6: Git atomic commit**: Commit `README.md` to `feat/profile-readme`.
+- [x] **Step 1: Verify missing/empty file fails harness (RED)**.
+- [x] **Step 2: Author `README.md` according to spec sections 1 through 5 (GREEN)**.
+- [x] **Step 3: Execute `python scripts/verify_profile.py README.md` and verify all link checks return HTTP 200**.
+- [x] **Step 4: Check for zero emojis and zero raw HTML tags**.
+- [x] **Step 5: Physical Evidence Gate**: Capture raw terminal execution receipt.
+- [x] **Step 6: Git atomic commit**: Commit `README.md` to `feat/profile-readme`.
 
 ---
 
