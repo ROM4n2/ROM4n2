@@ -6,25 +6,25 @@ package identity
 type SystemsEngineer struct {
 	Handle     string   `json:"handle"`
 	Focus      []string `json:"focus"`
-	Runtime    []string `json:"runtime"`
+	CoreStack  []string `json:"core_stack"`
 	Discipline []string `json:"discipline"`
 }
 
 var Me = SystemsEngineer{
 	Handle: "ROM4n2",
 	Focus: []string{
-		"Go 1.24+ Concurrency",
-		"Agent Harness Architecture",
-		"Systems Programming (C/C++, Rust)",
+		"High-Throughput Go Systems & Concurrency",
+		"Autonomous Agent Harness & Guard Architecture",
+		"Offline-First Local Systems (Python, C/C++)",
 	},
-	Runtime: []string{
-		"Linux / POSIX",
-		"Docker",
-		"Deterministic CI",
+	CoreStack: []string{
+		"Go 1.24+ (CSP, net/http, singleflight, AIMD)",
+		"C/C++, Python 3.11+",
+		"Linux / POSIX, Docker, Deterministic CI",
 	},
 	Discipline: []string{
 		"Zero-Hallucination (Receipts Over Claims)",
-		"Strict TDD & Adversarial Mutation Checks",
+		"Strict TDD & Adversarial Mutation Gates",
 		"Guard Clauses (Max Indentation: 2)",
 	},
 }
@@ -34,28 +34,29 @@ var Me = SystemsEngineer{
 
 ### Tech Stack & Core Competencies
 
-- **Languages**: `Go (1.24+)` · `C/C++` · `Python (3.11+)` · `Rust`
-- **Systems & Concurrency**: CSP / Goroutines / Channels · Linux POSIX · Docker · Low-Latency Network I/O
-- **Storage & State**: Redis · MySQL · SQLite · Local-First Persistent Stores
-- **Engineering Gates**: Strict TDD · Adversarial Mutation Testing · Static Analysis
+- **Primary Languages**: `Go (1.24+)` · `C/C++` · `Python (3.11+)`
+- **OSS Collaboration**: `Rust` (Upstream PR delivery & RFC feature work via compiler/clippy gates)
+- **Systems & Concurrency**: CSP / Goroutines / Channels · `singleflight` (N→1 dedup) · AIMD Congestion Control · Linux POSIX · Docker · Low-Latency Streaming
+- **Data & Persistence**: SQLite (WAL, Two-Tier sharded locks) · Redis · MySQL · Local-First Storage
+- **Engineering Gates**: Strict TDD · Adversarial Mutation Testing · Monolith Decoupling · Zero-Leak Resource Lifetimes
 
 ---
 
-### Flagship Projects
+### Flagship Projects & Open Source Contributions
 
-| Project | Role | Stack | What It Does |
+| Project | Role | Architecture & Stack | Verifiable Engineering Highlights |
 | --- | --- | --- | --- |
-| [DeLector](https://github.com/ROM4n2/DeLector) | Author | Python 3.11 · spaCy · FSRS | Offline-first CEFR (A1-C1) reading & vocabulary workbench |
-| [Qingjian](https://github.com/qingjian-team/qingjian) | Core Contributor | Rust · OS Hooks · Zero-Copy | High-performance dual-language cognitive Pinyin engine |
-| [blind-llm-eyes](https://github.com/ROM4n2/blind-llm-eyes) | Author | Go 1.24+ · net/http · Streaming | Low-latency reverse proxy bridging vision payloads to text LLMs |
-| [know-her](https://github.com/ROM4n2/know-her) | Author | Static Architecture · Dead-Link CI | Evidence-graded women's health platform with deterministic verification |
+| [blind-llm-eyes](https://github.com/ROM4n2/blind-llm-eyes) | Author | Go 1.24+ · net/http · singleflight · AIMD | Low-latency SSE streaming proxy; AIMD adaptive concurrency; in-flight image dedup (N→1); two-tier cache (LRU + SQLite); `go test -race` CI |
+| [DeLector](https://github.com/ROM4n2/DeLector) | Author | Python 3.11 · spaCy · FSRS Algorithm | 170+ merged PRs; offline-first desktop/mobile reading workbench; modular monolith decoupling; 2,300+ deterministic tests |
+| [Qingjian](https://github.com/qingjian-team/qingjian) | Contributor | Rust · Upstream Engine & CLI | Contributed core `v` mode date parser ([PR #720](https://github.com/qingjian-team/qingjian/pull/720) merged) & dictionary derivation ([PR #718](https://github.com/qingjian-team/qingjian/pull/718)); zero clippy warnings |
+| [know-her](https://github.com/ROM4n2/know-her) | Author | Static Architecture · Dead-Link CI | Evidence-graded women's health platform; automated dead-link CI gates; deterministic static publishing |
 
 ---
 
-### Invariant Baseline
+### Engineering Principles & Invariants
 
-1. **Zero-Hallucination**: Statements, benchmarks, and bug fixes require automated execution receipts and verifiable test outputs before landing.
-2. **Guard Clauses Flattening**: Maximum two indentation levels; branch boundaries enforced early without nested logic drift.
+1. **Zero-Hallucination (Physical Evidence Over Claims)**: Statements, benchmarks, and bug fixes require automated execution receipts and verifiable test outputs before landing.
+2. **Anti-Sycophancy & Guard Clauses Flattening**: Maximum two indentation levels; branch boundaries enforced early without nested logic drift.
 3. **Local-First & Zero Leaks**: Deterministic RAII/context lifetimes; fully functional offline without unvetted cloud dependencies.
 
 ---
