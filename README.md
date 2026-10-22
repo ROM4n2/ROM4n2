@@ -48,6 +48,7 @@ var Me = SystemsEngineer{
 | --- | --- | --- | --- |
 | [blind-llm-eyes](https://github.com/ROM4n2/blind-llm-eyes) | Author | Go 1.24+ · net/http · singleflight · AIMD | Low-latency SSE streaming proxy; AIMD adaptive concurrency; in-flight image dedup (N→1); two-tier cache (LRU + SQLite); `go test -race` CI |
 | [DeLector](https://github.com/ROM4n2/DeLector) | Author | Python 3.11 · spaCy · FSRS Algorithm | 170+ merged PRs; offline-first desktop/mobile reading workbench; modular monolith decoupling; 2,300+ deterministic tests |
+| [google/adk-go](https://github.com/google/adk-go) | Contributor | Go · GORM NamingStrategy · Multi-Tenant | Authored [PR #1823](https://github.com/google/adk-go/pull/1823); solved table prefix isolation via `schema.TablerWithNamer`; includes mutation check & E2E probe |
 | [Qingjian](https://github.com/qingjian-team/qingjian) | Contributor | Rust · Upstream Engine & CLI | Contributed core `v` mode date parser ([PR #720](https://github.com/qingjian-team/qingjian/pull/720) merged) & dictionary derivation ([PR #718](https://github.com/qingjian-team/qingjian/pull/718)); zero clippy warnings |
 | [know-her](https://github.com/ROM4n2/know-her) | Author | Static Architecture · Dead-Link CI | Evidence-graded women's health platform; automated dead-link CI gates; deterministic static publishing |
 
