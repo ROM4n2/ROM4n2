@@ -18,7 +18,7 @@ var Me = SystemsEngineer{
 		"Offline-First Local Systems (Python, C/C++)",
 	},
 	CoreStack: []string{
-		"Go 1.24+ (CSP, net/http, singleflight, AIMD)",
+		"Go 1.24+ (CSP, Worker Pool, singleflight, AIMD)",
 		"C/C++, Python 3.11+",
 		"Linux / POSIX, Docker, Deterministic CI",
 	},
@@ -36,8 +36,9 @@ var Me = SystemsEngineer{
 
 - **Primary Languages**: `Go (1.24+)` · `C/C++` · `Python (3.11+)`
 - **OSS Collaboration**: `Rust` (Upstream PR delivery & RFC feature work via compiler/clippy gates)
-- **Systems & Concurrency**: CSP / Goroutines / Channels · `singleflight` (N→1 dedup) · AIMD Congestion Control · Linux POSIX · Docker · Low-Latency Streaming
-- **Data & Persistence**: SQLite (WAL, Two-Tier sharded locks) · Redis · MySQL · Local-First Storage
+- **Systems & Concurrency**: CSP / Goroutines / Channels · `context.WithCancelCause` · Worker Pool & Two-Phase Shutdown · `singleflight` (N→1 dedup) · AIMD Congestion Control · Linux POSIX · Docker · Low-Latency SSE Streaming
+- **Agent Harness & Guardrails**: ReAct Loop · AST Conformance Gates · Adversarial Mutation Testing · Model Context Protocol (MCP) · FTS5+vec0 RRF Hybrid Retrieval
+- **Data & Persistence**: SQLite (WAL, Two-Tier sharded locks, CAS transactional queue) · Redis · MySQL · Local-First Storage
 - **Engineering Gates**: Strict TDD · Adversarial Mutation Testing · Monolith Decoupling · Zero-Leak Resource Lifetimes
 
 ---
@@ -46,10 +47,12 @@ var Me = SystemsEngineer{
 
 | Project | Role | Architecture & Stack | Verifiable Engineering Highlights |
 | --- | --- | --- | --- |
-| [blind-llm-eyes](https://github.com/ROM4n2/blind-llm-eyes) | Author | Go 1.24+ · net/http · singleflight · AIMD | Low-latency SSE streaming proxy; AIMD adaptive concurrency; in-flight image dedup (N→1); two-tier cache (LRU + SQLite); `go test -race` CI |
-| [DeLector](https://github.com/ROM4n2/DeLector) | Author | Python 3.11 · spaCy · FSRS Algorithm | 170+ merged PRs; offline-first desktop/mobile reading workbench; modular monolith decoupling; 2,300+ deterministic tests |
-| [google/adk-go](https://github.com/google/adk-go) | Contributor | Go · GORM NamingStrategy · Multi-Tenant | Authored [PR #1823](https://github.com/google/adk-go/pull/1823); solved table prefix isolation via `schema.TablerWithNamer`; includes mutation check & E2E probe |
-| [Qingjian](https://github.com/qingjian-team/qingjian) | Contributor | Rust · Upstream Engine & CLI | Contributed core `v` mode date parser ([PR #720](https://github.com/qingjian-team/qingjian/pull/720) merged) & dictionary derivation ([PR #718](https://github.com/qingjian-team/qingjian/pull/718)); zero clippy warnings |
+| [agent-runtime](https://github.com/ROM4n2/agent-runtime) | Author | Go 1.24+ · Worker Pool · SQLite WAL | Production-grade async Agent harness; cooperative preemption via `context.WithCancelCause`; transactional queue (SQLite WAL CAS) & push-notify scheduling; crash recovery; token-level SSE typewriter streaming; FTS5+vec0 RRF hybrid retrieval tool; 19 ADRs; 290+ tests with zero race conditions |
+| [blind-llm-eyes](https://github.com/ROM4n2/blind-llm-eyes) | Author | Go 1.24+ · net/http · singleflight · AIMD | High-throughput streaming reverse proxy (22k+ LOC Go); application-layer AIMD adaptive concurrency (+50% throughput); `singleflight` request dedup (N→1); sharded two-tier cache (LRU + SQLite); 400+ tests (`go test -race` clean) |
+| [DeLector](https://github.com/ROM4n2/DeLector) | Author | Go 1.24+ · Python 3.11 · DAG · Supervisor | Dual-engine architecture: 8,100+ LOC Go Agent subsystem (DAG workflow engine, Python Supervisor daemon with cascading SIGTERM); modular monolith decoupling (170+ merged PRs, 2,586 Python tests preserved, mutation test gates) |
+| [google/adk-go](https://github.com/google/adk-go) | Contributor | Go · GORM NamingStrategy · Multi-Tenant | Authored [PR #1823](https://github.com/google/adk-go/pull/1823) (in review); solved table prefix isolation via `schema.TablerWithNamer`; includes mutation check across 4 models & disk SQLite E2E probe |
+| [Qingjian](https://github.com/qingjian-team/qingjian) | Contributor | Rust · Upstream Engine & CLI | 20 merged upstream PRs; contributed core `v` mode date parser ([PR #720](https://github.com/qingjian-team/qingjian/pull/720)), dictionary derivation ([PR #718](https://github.com/qingjian-team/qingjian/pull/718)), macOS QWERTZ key swap fix ([PR #588](https://github.com/qingjian-team/qingjian/pull/588)), IPC protocol v8 ([PR #511](https://github.com/qingjian-team/qingjian/pull/511)); zero clippy warnings |
+| [defensive-skills](https://github.com/ROM4n2/defensive-skills) | Author | Python · AST Gate · Mutation Testing · MCP | Production-grade engineering harness & conformance gates for AI coding agents; 29 DFS skills; 9 test suites (109 tests); AST static authorization gates; adversarial mutation verification; Git Worktree parallel workspace isolation |
 | [know-her](https://github.com/ROM4n2/know-her) | Author | Static Architecture · Dead-Link CI | Evidence-graded women's health platform; automated dead-link CI gates; deterministic static publishing |
 
 ---
