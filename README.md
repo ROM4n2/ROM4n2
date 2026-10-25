@@ -5,6 +5,7 @@ package identity
 
 type SystemsEngineer struct {
 	Handle     string   `json:"handle"`
+	Status     string   `json:"status"`
 	Focus      []string `json:"focus"`
 	CoreStack  []string `json:"core_stack"`
 	Discipline []string `json:"discipline"`
@@ -12,6 +13,7 @@ type SystemsEngineer struct {
 
 var Me = SystemsEngineer{
 	Handle: "ROM4n2",
+	Status: "Seeking Go Backend / Agent Harness Intern (Xi'an / Remote)",
 	Focus: []string{
 		"High-Throughput Go Systems & Concurrency",
 		"Autonomous Agent Harness & Guard Architecture",
@@ -54,6 +56,20 @@ var Me = SystemsEngineer{
 | [Qingjian](https://github.com/qingjian-team/qingjian) | Contributor | Rust · Upstream Engine & CLI | 20 merged upstream PRs; contributed core `v` mode date parser ([PR #720](https://github.com/qingjian-team/qingjian/pull/720)), dictionary derivation ([PR #718](https://github.com/qingjian-team/qingjian/pull/718)), macOS QWERTZ key swap fix ([PR #588](https://github.com/qingjian-team/qingjian/pull/588)), IPC protocol v8 ([PR #511](https://github.com/qingjian-team/qingjian/pull/511)); zero clippy warnings |
 | [defensive-skills](https://github.com/ROM4n2/defensive-skills) | Author | Python · AST Gate · Mutation Testing · MCP | Production-grade engineering harness & conformance gates for AI coding agents; 29 DFS skills; 9 test suites (109 tests); AST static authorization gates; adversarial mutation verification; Git Worktree parallel workspace isolation |
 | [know-her](https://github.com/ROM4n2/know-her) | Author | Static Architecture · Dead-Link CI | Evidence-graded women's health platform; automated dead-link CI gates; deterministic static publishing |
+
+---
+
+### Live: Chances of Getting Hired
+
+- **Target Roles**: `Go Backend Engineering Intern` · `AI Agent Infrastructure & Harness Architecture Intern` (Xi'an on-site or Remote · Available 4–5 days/week · 3–6+ months)
+- **Direct Technical Pitch**: Prefer a concrete technical challenge to a cover letter. Hand me a goroutine leak, a cascading cancellation race, or an AST gate that leaks edge cases, and I will trace root causes and deliver passing deterministic receipts before the day ends.
+
+| Dimension | Physical Signal / Proof | Verifiable Receipt |
+| --- | --- | --- |
+| Concurrency & Runtime | Go 1.24+ Worker Pool, CAS transactional queue, AIMD streaming | [agent-runtime](https://github.com/ROM4n2/agent-runtime) (291 tests, 0 race) · [blind-llm-eyes](https://github.com/ROM4n2/blind-llm-eyes) (409 tests) |
+| Agent Harness & Guardrails | AST Conformance Gate, mutation verification, MCP protocol | [defensive-skills](https://github.com/ROM4n2/defensive-skills) (109 tests) · [DeLector](https://github.com/ROM4n2/DeLector) (Go DAG + Supervisor) |
+| OSS Collaborative Delivery | Strict RFC 2119, upstream clippy gates, GORM isolation fix | [qingjian](https://github.com/qingjian-team/qingjian) (20 merged PRs) · [adk-go](https://github.com/google/adk-go/pull/1823) (PR #1823 in review) |
+| Test Discipline & Invariants | Automated execution receipts over self-reporting | 5,500+ collected tests across portfolio, 100% clean on default branches |
 
 ---
 
