@@ -17,10 +17,10 @@ README_PATH = Path("README.md")
 
 def audit_rendering(file_path: Path) -> dict:
     content = file_path.read_text(encoding="utf-8")
-    lines = content.splitlines()
+    raw_lines = content.splitlines()
 
     stats = {
-        "total_lines": len(lines),
+        "total_lines": len(raw_lines),
         "total_headings": 0,
         "tables_found": 0,
         "table_rows_total": 0,
@@ -33,6 +33,7 @@ def audit_rendering(file_path: Path) -> dict:
 
     in_table = False
     current_table_cols = 0
+    in_code_block = False
 
     table_row_re = re.compile(r"^\s*\|(.+)\|\s*$")
     link_re = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
@@ -40,7 +41,14 @@ def audit_rendering(file_path: Path) -> dict:
     html_re = re.compile(r"</?[a-zA-Z0-9]+(\s+[^>]*)?>")
     emoji_re = re.compile(r"[\U0001F300-\U0001FAFF\U00002700-\U000027BF]")
 
-    for idx, line in enumerate(lines, start=1):
+    for idx, line in enumerate(raw_lines, start=1):
+        stripped = line.strip()
+        if stripped.startswith("```"):
+            in_code_block = not in_code_block
+            continue
+        if in_code_block:
+            continue
+
         # Heading check
         if line.startswith("#"):
             stats["total_headings"] += 1

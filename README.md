@@ -3,33 +3,31 @@
 ```go
 package identity
 
+import "context"
+
+// SystemsEngineer implements deterministic concurrency runtimes & harness guardrails.
 type SystemsEngineer struct {
-	Handle     string   `json:"handle"`
-	Status     string   `json:"status"`
-	Focus      []string `json:"focus"`
-	CoreStack  []string `json:"core_stack"`
-	Discipline []string `json:"discipline"`
+	Handle     string   `spec:"ROM4n2"`
+	Status     string   `spec:"Seeking Go Backend / Agent Harness Intern (Xi'an / Remote)"`
+	CoreStack  []string `spec:"Go 1.24+ (CSP, Worker Pool, singleflight, AIMD), C/C++, Python 3.11+"`
+	Invariants []string `spec:"Zero-Hallucination, Strict TDD, Max Indentation <= 2, Zero Data Races"`
 }
 
-var Me = SystemsEngineer{
-	Handle: "ROM4n2",
-	Status: "Seeking Go Backend / Agent Harness Intern (Xi'an / Remote)",
-	Focus: []string{
-		"High-Throughput Go Systems & Concurrency",
-		"Autonomous Agent Harness & Guard Architecture",
-		"Offline-First Local Systems (Python, C/C++)",
-	},
-	CoreStack: []string{
-		"Go 1.24+ (CSP, Worker Pool, singleflight, AIMD)",
-		"C/C++, Python 3.11+",
-		"Linux / POSIX, Docker, Deterministic CI",
-	},
-	Discipline: []string{
-		"Zero-Hallucination (Receipts Over Claims)",
-		"Strict TDD & Adversarial Mutation Gates",
-		"Guard Clauses (Max Indentation: 2)",
-	},
+// Supervise dispatches worker pipelines with cooperative preemption and verified receipts.
+func (eng *SystemsEngineer) Supervise(ctx context.Context, tasks <-chan Task) (<-chan Receipt, error) {
+	// 5,800+ automated test receipts across portfolio; zero race conditions (`go test -race` clean).
+	return eng.Harness.Dispatch(ctx, WithWorkerPool(32), WithAIMD(), WithCancelCause())
 }
+```
+
+```text
++-----------------------------------------------------------------------------+
+|                         SYSTEMS RUNTIME & HARNESS                           |
++-----------------------------------------------------------------------------+
+|  [ Ingest / SSE ]       -->  [ singleflight (N->1) ]  -->  [ AIMD Controller ] |
+|  [ Worker Pool ]        -->  [ SQLite WAL CAS Queue ] -->  [ CancelCause Trap ] |
+|  [ AST Fitness Gates ]  -->  [ Mutation Test Harness] -->  [ Zero-Race Receipts]|
++-----------------------------------------------------------------------------+
 ```
 
 ---
@@ -53,7 +51,7 @@ var Me = SystemsEngineer{
 | [blind-llm-eyes](https://github.com/ROM4n2/blind-llm-eyes) | Author | Go 1.24+ · net/http · singleflight · AIMD | Streaming reverse proxy (22k+ LOC Go); AIMD adaptive concurrency (+50%); singleflight dedup (N→1); sharded cache (LRU + SQLite); 409 tests (0 race) |
 | [DeLector](https://github.com/ROM4n2/DeLector) | Author | Go 1.24+ · Python 3.11 · DAG · Supervisor | Dual-engine (v5.19.0): 8,100+ LOC Go Agent subsystem (DAG engine, Supervisor daemon with cascading SIGTERM); single-instance lock & port rollover; 176 merged PRs; 2,584 tests |
 | [google/adk-go](https://github.com/google/adk-go) | Contributor | Go · GORM NamingStrategy · Multi-Tenant | Authored [PR #1823](https://github.com/google/adk-go/pull/1823) (in review); solved table prefix isolation via `schema.TablerWithNamer`; 4-model mutation checks & disk SQLite E2E probe |
-| [Qingjian](https://github.com/qingjian-team/qingjian) | Contributor | Rust · Upstream Engine & CLI | 25 merged upstream PRs; contributed core `v` mode date parser ([PR #720](https://github.com/qingjian-team/qingjian/pull/720)), dictionary derivation ([PR #718](https://github.com/qingjian-team/qingjian/pull/718)), custom phrase expansion ([PR #794](https://github.com/qingjian-team/qingjian/pull/794)), macOS QWERTZ fix ([PR #588](https://github.com/qingjian-team/qingjian/pull/588)); zero clippy warnings |
+| [Qingjian](https://github.com/qingjian-team/qingjian) | Contributor | Rust · Upstream Engine & CLI | 25 merged upstream PRs + [PR #790](https://github.com/qingjian-team/qingjian/pull/790) (RFC candidate ranking); core `v` mode date parser ([PR #720](https://github.com/qingjian-team/qingjian/pull/720)), custom phrases ([PR #794](https://github.com/qingjian-team/qingjian/pull/794)); zero clippy warnings |
 | [defensive-skills](https://github.com/ROM4n2/defensive-skills) | Author | Python · AST Gate · Mutation Testing · MCP | AI coding agent harness (v0.4.0); 28 DFS skills with 3-tier progressive disclosure & budget gates; AST authorization gates; 114 tests across 9 suites |
 | [know-her](https://github.com/ROM4n2/know-her) | Author | Static Architecture · Dead-Link CI | Evidence-graded health reference; automated dead-link CI gates; deterministic static publishing; 25 tests clean |
 
@@ -68,8 +66,13 @@ var Me = SystemsEngineer{
 | --- | --- | --- |
 | Concurrency & Runtime | Go 1.24+ Worker Pool, CAS transactional queue, AIMD streaming | [agent-runtime](https://github.com/ROM4n2/agent-runtime) (545 tests, 0 race) · [blind-llm-eyes](https://github.com/ROM4n2/blind-llm-eyes) (409 tests) |
 | Agent Harness & Guardrails | AST Conformance Gate, mutation verification, MCP protocol | [defensive-skills](https://github.com/ROM4n2/defensive-skills) (114 tests) · [DeLector](https://github.com/ROM4n2/DeLector) (Go DAG + Supervisor) |
-| OSS Collaborative Delivery | Strict RFC 2119, upstream clippy gates, GORM isolation fix | [qingjian](https://github.com/qingjian-team/qingjian) (25 merged PRs) · [adk-go](https://github.com/google/adk-go/pull/1823) (PR #1823 in review) |
+| OSS Collaborative Delivery | Strict RFC 2119, upstream clippy gates, GORM isolation fix | [qingjian](https://github.com/qingjian-team/qingjian) (25 merged PRs, [PR #790](https://github.com/qingjian-team/qingjian/pull/790)) · [adk-go](https://github.com/google/adk-go/pull/1823) (PR #1823 in review) |
 | Test Discipline & Invariants | Automated execution receipts over self-reporting | 5,800+ collected tests across portfolio, 100% clean on default branches |
+
+```bash
+# Deterministic Evidence Probe: clone & run race detector on flagship runtime
+git clone --depth 1 https://github.com/ROM4n2/agent-runtime.git && cd agent-runtime && go test -race -count=1 ./...
+```
 
 ---
 
