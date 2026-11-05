@@ -13,8 +13,8 @@ type Engineer interface {
 }
 
 // Dispatch: cooperative preemption, worker pool, AIMD, WithCancelCause.
-// Availability: remote-only freelance & contract delivery; Go backend,
-// Agent/MCP integration, race audits, CLI tooling. Sources + receipts.
+// Availability: remote engineering roles (Go backend / Agent harness) primary;
+// limited fixed-scope project work in parallel. Sources + test receipts.
 ```
 
 ```text
@@ -40,10 +40,10 @@ type Engineer interface {
 
 ---
 
-### Remote Engagements & Delivery Scope
+### Availability & Collaboration
 
-- **Freelance / Contract (remote-only)**: `Go 1.24+` backend services & API hardening · Agent / MCP / RAG integration · goroutine-leak & data-race audits · CLI / tooling. Fixed-scope milestones, escrow-friendly, source + test receipts delivered.
-- **Internship (remote)**: Go Backend / Agent Infrastructure · 4-5 days/week · 3-6+ months.
+- **Primary - Remote Engineering Roles**: `Go Backend` / `Agent Infrastructure & Harness` · internship, long-term part-time, or full-time remote · 4-5 days/week · 3-6+ months.
+- **Parallel - Fixed-Scope Project Work**: Go concurrency audits, MCP / CLI tooling, race-clean receipts. Single-item scope, written acceptance criteria, platform escrow or milestone payment.
 - **Technical Pitch**: Hand me a goroutine leak, a cascading cancellation race, or an AST gate leaking edge cases; root cause plus passing deterministic receipts.
 
 ---
@@ -90,4 +90,4 @@ git clone --depth 1 https://github.com/ROM4n2/agent-runtime.git && cd agent-runt
 - **Email**: [beianderen@gmail.com](mailto:beianderen@gmail.com)
 - **GitHub Profile**: [https://github.com/ROM4n2](https://github.com/ROM4n2)
 - **Public Keys**: SSH keys available at [https://github.com/ROM4n2.keys](https://github.com/ROM4n2.keys)
-- **Collaboration**: Open for remote freelance engagements in Go concurrency runtime design, autonomous agent harnesses, and systems infrastructure.
+- **Collaboration**: Open to remote engineering roles in Go concurrency runtime design, autonomous agent harnesses, and systems infrastructure; limited fixed-scope project work alongside.
