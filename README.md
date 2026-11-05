@@ -5,19 +5,16 @@ package identity
 
 import "context"
 
-// SystemsEngineer implements deterministic concurrency runtimes & harness guardrails.
-type SystemsEngineer struct {
-	Handle     string   `spec:"ROM4n2"`
-	Status     string   `spec:"Seeking Go Backend / Agent Harness Intern (Xi'an / Remote)"`
-	CoreStack  []string `spec:"Go 1.24+ (CSP, Worker Pool, singleflight, AIMD), C/C++, Python 3.11+"`
-	Invariants []string `spec:"Zero-Hallucination, Strict TDD, Max Indentation <= 2, Zero Data Races"`
+// Engineer is the delivery contract: deterministic concurrency runtimes,
+// agent-harness guardrails, and verifiable receipts behind every claim.
+type Engineer interface {
+    Supervise(ctx context.Context, tasks <-chan Task) (<-chan Receipt, error)
+    Deliver(ctx context.Context, scope Scope) (Artifact, error)
 }
 
-// Supervise dispatches worker pipelines with cooperative preemption and verified receipts.
-func (eng *SystemsEngineer) Supervise(ctx context.Context, tasks <-chan Task) (<-chan Receipt, error) {
-	// 5,800+ automated test receipts across portfolio; zero race conditions (`go test -race` clean).
-	return eng.Harness.Dispatch(ctx, WithWorkerPool(32), WithAIMD(), WithCancelCause())
-}
+// Dispatch: cooperative preemption, worker pool, AIMD, WithCancelCause.
+// Availability: remote-only freelance & contract delivery; Go backend,
+// Agent/MCP integration, race audits, CLI tooling. Sources + receipts.
 ```
 
 ```text
@@ -35,11 +32,19 @@ func (eng *SystemsEngineer) Supervise(ctx context.Context, tasks <-chan Task) (<
 ### Tech Stack & Core Competencies
 
 - **Primary Languages**: `Go (1.24+)` · `C/C++` · `Python (3.11+)`
-- **OSS Collaboration**: `Rust` (Upstream PR delivery & RFC feature work via compiler/clippy gates)
-- **Systems & Concurrency**: CSP / Goroutines / Channels · `context.WithCancelCause` · Worker Pool & Two-Phase Shutdown · `singleflight` (N→1 dedup) · AIMD Congestion Control · Linux POSIX · Docker · Low-Latency SSE Streaming
+- **OSS Collaboration**: `Rust` (upstream PR delivery; not a service offering)
+- **Systems & Concurrency**: CSP / Goroutines / Channels · `context.WithCancelCause` · Worker Pool & Two-Phase Shutdown · `singleflight` (N->1 dedup) · AIMD Congestion Control · Linux POSIX · Docker · Low-Latency SSE Streaming
 - **Agent Harness & Guardrails**: ReAct Loop · AST Conformance Gates · Adversarial Mutation Testing · Model Context Protocol (MCP) · FTS5+vec0 RRF Hybrid Retrieval
 - **Data & Persistence**: SQLite (WAL, Two-Tier sharded locks, CAS transactional queue) · Redis · MySQL · Local-First Storage
 - **Engineering Gates**: Strict TDD · Adversarial Mutation Testing · Monolith Decoupling · Zero-Leak Resource Lifetimes
+
+---
+
+### Remote Engagements & Delivery Scope
+
+- **Freelance / Contract (remote-only)**: `Go 1.24+` backend services & API hardening · Agent / MCP / RAG integration · goroutine-leak & data-race audits · CLI / tooling. Fixed-scope milestones, escrow-friendly, source + test receipts delivered.
+- **Internship (remote)**: Go Backend / Agent Infrastructure · 4-5 days/week · 3-6+ months.
+- **Technical Pitch**: Hand me a goroutine leak, a cascading cancellation race, or an AST gate leaking edge cases; root cause plus passing deterministic receipts.
 
 ---
 
@@ -47,27 +52,23 @@ func (eng *SystemsEngineer) Supervise(ctx context.Context, tasks <-chan Task) (<
 
 | Project | Role | Architecture & Stack | Verifiable Engineering Highlights |
 | --- | --- | --- | --- |
-| [agent-runtime](https://github.com/ROM4n2/agent-runtime) | Author | Go 1.24+ · Worker Pool · SQLite WAL | Async Agent harness (P10); CAS queue & push scheduler; token-level SSE; upstream retry backoff & token cost metering; 21 ADRs; 545 tests (0 race) |
-| [blind-llm-eyes](https://github.com/ROM4n2/blind-llm-eyes) | Author | Go 1.24+ · net/http · singleflight · AIMD | Streaming reverse proxy (22k+ LOC Go); AIMD adaptive concurrency (+50%); singleflight dedup (N→1); sharded cache (LRU + SQLite); 409 tests (0 race) |
-| [DeLector](https://github.com/ROM4n2/DeLector) | Author | Go 1.24+ · Python 3.11 · DAG · Supervisor | Dual-engine (v5.20.2): Go companion agent subsystem (SSE streaming reverse proxy, supervisor daemon with SIGTERM); OS instance lock & port rollover; 6-way CI matrix; 195 merged PRs; 2,584 tests |
-| [google/adk-go](https://github.com/google/adk-go) | Contributor | Go · GORM NamingStrategy · Multi-Tenant | Authored [PR #1823](https://github.com/google/adk-go/pull/1823) (GORM TablePrefix isolation) & [PR #1978](https://github.com/google/adk-go/pull/1978) (value-configured launcher Runnable); mutation checks & disk SQLite E2E probe |
-| [Qingjian](https://github.com/qingjian-team/qingjian) | Contributor | Rust · Upstream Engine & CLI | 26 merged upstream PRs + [PR #790](https://github.com/qingjian-team/qingjian/pull/790) (RFC candidate ranking); core `v` mode date parser ([PR #720](https://github.com/qingjian-team/qingjian/pull/720)), custom phrases ([PR #794](https://github.com/qingjian-team/qingjian/pull/794)), dual/full pinyin mixed typing ([PR #825](https://github.com/qingjian-team/qingjian/pull/825)); zero clippy warnings |
-| [defensive-skills](https://github.com/ROM4n2/defensive-skills) | Author | Python · AST Gate · Mutation Testing · MCP | AI coding agent harness (v0.4.0); 28 DFS skills with 3-tier progressive disclosure & budget gates; AST authorization gates; 114 tests across 9 suites |
-| [know-her](https://github.com/ROM4n2/know-her) | Author | Static Architecture · Dead-Link CI | Evidence-graded health reference; automated dead-link CI gates; deterministic static publishing; 25 tests clean |
+| [agent-runtime](https://github.com/ROM4n2/agent-runtime) | Author | Go 1.24+ · Worker Pool · SQLite WAL | Async Agent harness; CAS queue & push scheduler; token-level SSE; upstream retry & token metering; 21 ADRs; 545 tests (race clean) |
+| [blind-llm-eyes](https://github.com/ROM4n2/blind-llm-eyes) | Author | Go 1.24+ · net/http · singleflight · AIMD | Streaming vision proxy (22,109 LOC); errgroup parallel image processing 39.7 s -> 19.8 s (-50%, bench receipt); singleflight dedup; sharded LRU + SQLite cache; 409 tests (race clean) |
+| [DeLector](https://github.com/ROM4n2/DeLector) | Author | Python 3.11 · Go 1.24+ · FastAPI | German CEFR A1-C1 reader & exam workbench (v5.21.1); offline-first spaCy NLP + FSRS; Go companion agent & supervisor daemon; 219 merged PRs; 2,784 pytest + 158 Go tests |
+| [defensive-skills](https://github.com/ROM4n2/defensive-skills) | Author | Python · AST Gate · Mutation Testing · MCP | AI coding-agent harness & conformance gates; 28-skill tree (27 sub-skills + router), 3-tier disclosure & budget gates; AST authorization gates; 115 tests |
+| [google/adk-go](https://github.com/google/adk-go) | Contributor | Go · GORM · Agent toolkit | 3 PRs under review (none merged yet): [#1823](https://github.com/google/adk-go/pull/1823) GORM TablePrefix isolation · [#1978](https://github.com/google/adk-go/pull/1978) value-configured launcher Runnable · [#1990](https://github.com/google/adk-go/pull/1990) live tool responses across reconnect |
+| [Qingjian](https://github.com/qingjian-team/qingjian) | Contributor | Rust · IME Engine & CLI | 26 merged upstream PRs: [#720](https://github.com/qingjian-team/qingjian/pull/720) date parser · [#794](https://github.com/qingjian-team/qingjian/pull/794) custom phrases · [#825](https://github.com/qingjian-team/qingjian/pull/825) dual/full pinyin mixed typing |
 
 ---
 
-### Live: Chances of Getting Hired
-
-- **Target Roles**: `Go Backend Engineering Intern` · `AI Agent Infrastructure & Harness Architecture Intern` (Xi'an on-site or Remote · Available 4–5 days/week · 3–6+ months)
-- **Direct Technical Pitch**: Prefer a concrete technical challenge to a cover letter. Hand me a goroutine leak, a cascading cancellation race, or an AST gate that leaks edge cases, and I will trace root causes and deliver passing deterministic receipts before the day ends.
+### Verifiable Receipts
 
 | Dimension | Physical Signal / Proof | Verifiable Receipt |
 | --- | --- | --- |
-| Concurrency & Runtime | Go 1.24+ Worker Pool, CAS transactional queue, AIMD streaming | [agent-runtime](https://github.com/ROM4n2/agent-runtime) (545 tests, 0 race) · [blind-llm-eyes](https://github.com/ROM4n2/blind-llm-eyes) (409 tests) |
-| Agent Harness & Guardrails | AST Conformance Gate, mutation verification, MCP protocol | [defensive-skills](https://github.com/ROM4n2/defensive-skills) (114 tests) · [DeLector](https://github.com/ROM4n2/DeLector) (Go DAG + Supervisor) |
-| OSS Collaborative Delivery | Strict RFC 2119, upstream clippy gates, GORM isolation fix | [qingjian](https://github.com/qingjian-team/qingjian) (26 merged PRs, [PR #790](https://github.com/qingjian-team/qingjian/pull/790)) · [adk-go](https://github.com/google/adk-go) ([PR #1823](https://github.com/google/adk-go/pull/1823), [PR #1978](https://github.com/google/adk-go/pull/1978)) |
-| Test Discipline & Invariants | Automated execution receipts over self-reporting | 5,800+ collected tests across portfolio, 100% clean on default branches |
+| Concurrency & Runtime | Go 1.24+ Worker Pool, CAS transactional queue, AIMD streaming | [agent-runtime](https://github.com/ROM4n2/agent-runtime) (545 tests, go test -race clean) · [blind-llm-eyes](https://github.com/ROM4n2/blind-llm-eyes) (409 tests) |
+| Agent Harness & Guardrails | AST Conformance Gate, mutation verification, MCP protocol | [defensive-skills](https://github.com/ROM4n2/defensive-skills) (115 tests) · [DeLector](https://github.com/ROM4n2/DeLector) (2,784 pytest + 158 Go) |
+| OSS Collaborative Delivery | RFC 2119 discipline, upstream Go/Rust review gates | [qingjian](https://github.com/qingjian-team/qingjian) (26 merged PRs) · [adk-go](https://github.com/google/adk-go) (3 PRs open for review) |
+| Test Discipline & Invariants | Execution receipts over self-reporting | 4,011 itemized tests across four flagship repos; race detector clean on both Go runtimes |
 
 ```bash
 # Deterministic Evidence Probe: clone & run race detector on flagship runtime
@@ -89,4 +90,4 @@ git clone --depth 1 https://github.com/ROM4n2/agent-runtime.git && cd agent-runt
 - **Email**: [beianderen@gmail.com](mailto:beianderen@gmail.com)
 - **GitHub Profile**: [https://github.com/ROM4n2](https://github.com/ROM4n2)
 - **Public Keys**: SSH keys available at [https://github.com/ROM4n2.keys](https://github.com/ROM4n2.keys)
-- **Collaboration**: Open for technical exchanges in Go concurrency runtime design, autonomous agent harnesses, and systems infrastructure.
+- **Collaboration**: Open for remote freelance engagements in Go concurrency runtime design, autonomous agent harnesses, and systems infrastructure.
