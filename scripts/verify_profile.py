@@ -49,6 +49,24 @@ RAW_HTML_PATTERN = re.compile(
 
 MARKDOWN_LINK_PATTERN = re.compile(r"\[([^\]]+)\]\((https?://[^\s\)]+)\)")
 TABLE_ROW_PATTERN = re.compile(r"^\s*\|(.+)\|\s*$")
+GITHUB_KEYS_PATTERN = re.compile(r"^https://github\.com/([^/.]+)\.keys/?$")
+GITHUB_PAGE_PATTERN = re.compile(r"^https://github\.com/([^/]+)(?:/([^/]+))?(?:/pull/(\d+))?/?$")
+
+
+def github_api_equivalent(url: str) -> str | None:
+    """Map a github.com HTML link to its REST API resource for deterministic fallback."""
+    m = GITHUB_KEYS_PATTERN.match(url)
+    if m:
+        return f"https://api.github.com/users/{m.group(1)}/keys"
+    m = GITHUB_PAGE_PATTERN.match(url)
+    if not m:
+        return None
+    owner, repo, pr = m.group(1), m.group(2), m.group(3)
+    if repo is None:
+        return f"https://api.github.com/users/{owner}"
+    if pr:
+        return f"https://api.github.com/repos/{owner}/{repo}/pulls/{pr}"
+    return f"https://api.github.com/repos/{owner}/{repo}"
 
 
 def strip_code_blocks(content: str) -> list[tuple[int, str]]:
@@ -164,27 +182,49 @@ def check_links(lines: list[tuple[int, str]], skip_network: bool = False) -> lis
         req = urllib.request.Request(url, headers=headers)
         success = False
         last_error = None
-        for attempt in range(3):
+        for attempt in range(5):
             try:
                 with urllib.request.urlopen(req, timeout=10) as resp:
                     code = resp.getcode()
                     if code not in (200, 301, 302, 307, 308):
-                        violations.append(f"Line {line_num}: Link '{url}' returned HTTP {code}")
-                    success = True
-                    break
+                        last_error = f"Line {line_num}: Link '{url}' returned HTTP {code}"
+                    else:
+                        success = True
+                        break
             except urllib.error.HTTPError as e:
-                violations.append(f"Line {line_num}: Link '{url}' returned HTTP error {e.code}")
-                success = True
-                break
+                last_error = f"Line {line_num}: Link '{url}' returned HTTP error {e.code}"
+                # 5xx / 429 are transient proxy or TLS resets on Windows; retry them.
+                # Deterministic 4xx are real broken links: fail fast, no retry.
+                if e.code < 500 and e.code != 429:
+                    break
             except urllib.error.URLError as e:
                 last_error = f"Line {line_num}: Link '{url}' connection failed: {e.reason}"
-                time.sleep(0.5)
             except Exception as e:
                 last_error = f"Line {line_num}: Link '{url}' error: {e}"
-                time.sleep(0.5)
 
-        if not success and last_error:
-            violations.append(last_error)
+            # Bursty github.com probes trip the Windows proxy's rate limiter;
+            # back off exponentially (0.5/1/2/4 s) and pace consecutive URLs.
+            if not success and attempt < 4:
+                time.sleep(0.5 * (2 ** attempt))
+
+        if not success:
+            # Windows proxies intermittently 504 github.com HTML pages under burst load.
+            # Confirm the resource exists over the stable REST host before failing the gate.
+            api_url = github_api_equivalent(url)
+            if api_url:
+                try:
+                    api_req = urllib.request.Request(api_url, headers=headers)
+                    with urllib.request.urlopen(api_req, timeout=10) as resp:
+                        if resp.getcode() == 200:
+                            success = True
+                            print(f"INFO: {url} verified via REST fallback", file=sys.stderr)
+                except Exception as e:
+                    last_error = f"{last_error} (REST fallback {api_url} failed: {e})"
+
+        if not success:
+            violations.append(last_error or f"Line {line_num}: Link '{url}' did not resolve")
+
+        time.sleep(0.2)
 
     return violations
 
